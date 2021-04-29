@@ -87,10 +87,10 @@ jobs:
         # Depth of at least 2 for codecov coverage diffs. See https://github.com/GoogleChrome/lighthouse/pull/12079
         fetch-depth: 2
 
-    - name: Use Node.js 12.x
+    - name: Use Node.js 14.x
       uses: actions/setup-node@v1
       with:
-        node-version: 12.x
+        node-version: 14.x
 
     - name: Set up protoc
       uses: arduino/setup-protoc@64c0c85d18e984422218383b81c52f8b077404d3

@@ -7,6 +7,7 @@
 
 const path = require('path');
 const i18n = require('../../../lib/i18n/i18n.js');
+const log = require('lighthouse-logger');
 
 /* eslint-env jest */
 
@@ -140,7 +141,7 @@ describe('i18n', () => {
       expect(i18n.lookupLocale('en-xa')).toEqual('en-XA');
     });
 
-    it('canonicalizes the locales', () => {
+    it('takes multiple locale strings and returns a canonical one', () => {
       expect(i18n.lookupLocale([invalidLocale, 'en-xa'])).toEqual('en-XA');
     });
 
@@ -148,6 +149,17 @@ describe('i18n', () => {
       expect(i18n.lookupLocale(undefined)).toEqual('en');
       expect(i18n.lookupLocale(invalidLocale)).toEqual('en');
       expect(i18n.lookupLocale([invalidLocale, invalidLocale])).toEqual('en');
+    });
+
+    it('logs a warning if locale is not available and the default is used', () => {
+      const logListener = jest.fn();
+      log.events.once('warning', logListener);
+
+      expect(i18n.lookupLocale(invalidLocale)).toEqual('en');
+
+      expect(logListener).toBeCalledTimes(1);
+      expect(logListener).toBeCalledWith(['i18n',
+        `locale(s) '${invalidLocale}' not available. Falling back to default 'en'`]);
     });
 
     it('falls back to root tag prefix if specific locale not available', () => {
