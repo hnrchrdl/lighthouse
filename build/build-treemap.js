@@ -53,7 +53,7 @@ async function run() {
     javascripts: [
       /* eslint-disable max-len */
       fs.readFileSync(require.resolve('idb-keyval/dist/idb-keyval-min.js'), 'utf8'),
-      fs.readFileSync(require.resolve('event-target-shim/umd.js'), 'utf8'),
+      fs.readFileSync(require.resolve('event-target-shim/umd'), 'utf8'),
       fs.readFileSync(require.resolve('webtreemap-cdt'), 'utf8'),
       fs.readFileSync(require.resolve('tabulator-tables/dist/js/tabulator_core.js'), 'utf8'),
       fs.readFileSync(require.resolve('tabulator-tables/dist/js/modules/sort.js'), 'utf8'),
