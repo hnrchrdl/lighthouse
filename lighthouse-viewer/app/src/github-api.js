@@ -36,7 +36,6 @@ class GithubApi {
       return Promise.reject(new Error('Save already in progress'));
     }
 
-    // @ts-ignore
     logger.log('Saving report to GitHub...', false);
     this._saving = true;
 

@@ -15,8 +15,11 @@ const GhPagesApp = require('./gh-pages-app.js');
  */
 function buildStrings() {
   const locales = require('../lighthouse-core/lib/i18n/locales.js');
-  const UIStrings = require('../lighthouse-treemap/app/src/util.js').UIStrings;
-  const strings = /** @type {import('../lighthouse-treemap/types/treemap').Strings} */ ({});
+  const UIStrings = require(
+    // Prevent tsc from evaluating util.js
+    '' + '../lighthouse-treemap/app/src/util.js'
+  ).UIStrings;
+  const strings = /** @type {LH.Strings} */ ({});
 
   for (const [locale, lhlMessages] of Object.entries(locales)) {
     const localizedStrings = Object.fromEntries(

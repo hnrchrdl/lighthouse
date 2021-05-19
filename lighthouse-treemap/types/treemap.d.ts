@@ -5,8 +5,6 @@ import _GithubApi = require('../../lighthouse-viewer/app/src/github-api.js');
 import _Logger = require('../../lighthouse-core/report/html/renderer/logger.js');
 import {FirebaseNamespace} from '@firebase/app-types';
 
-export type Strings = Record<LH.Locale, import('../../lighthouse-core/lib/i18n/locales').LhlMessages>;
-
 declare global {
   class WebTreeMap {
     constructor(data: any, options: WebTreeMapOptions);
@@ -44,7 +42,7 @@ declare global {
   var FirebaseAuth: typeof _FirebaseAuth;
   var firebase: Required<FirebaseNamespace>;
   var idbKeyval: typeof import('idb-keyval');
-  var strings: Strings;
+  var strings: LH.Strings;
 
   interface Window {
     logger: _Logger;

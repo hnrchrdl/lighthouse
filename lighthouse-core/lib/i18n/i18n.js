@@ -508,14 +508,12 @@ function replaceIcuMessages(inputObject, locale) {
   return icuMessagePaths;
 }
 
-/** @typedef {import('./locales').LhlMessages} LhlMessages */
-
 /**
  * Populate the i18n string lookup dict with locale data
  * Used when the host environment selects the locale and serves lighthouse the intended locale file
  * @see https://docs.google.com/document/d/1jnt3BqKB-4q3AE94UWFA0Gqspx8Sd_jivlB7gQMlmfk/edit
  * @param {LH.Locale} locale
- * @param {LhlMessages} lhlMessages
+ * @param {LH.LhlMessages} lhlMessages
  */
 function registerLocaleData(locale, lhlMessages) {
   LOCALES[locale] = lhlMessages;

@@ -692,7 +692,7 @@ function injectOptions(options) {
 }
 
 /**
- * @param {import('../../../lighthouse-core/lib/i18n/locales').LhlMessages} localeMessages
+ * @param {LH.LhlMessages} localeMessages
  */
 function getStrings(localeMessages) {
   const strings = /** @type {TreemapUtil['UIStrings']} */ ({});
