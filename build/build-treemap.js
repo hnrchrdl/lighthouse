@@ -19,7 +19,7 @@ function buildStrings() {
     // Prevent tsc from evaluating util.js
     '' + '../lighthouse-treemap/app/src/util.js'
   ).UIStrings;
-  const strings = /** @type {LH.Strings} */ ({});
+  const strings = /** @type {Record<LH.Locale, LH.LhlMessages>} */ ({});
 
   for (const [locale, lhlMessages] of Object.entries(locales)) {
     const localizedStrings = Object.fromEntries(

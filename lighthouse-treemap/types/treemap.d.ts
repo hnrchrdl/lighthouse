@@ -42,7 +42,7 @@ declare global {
   var FirebaseAuth: typeof _FirebaseAuth;
   var firebase: Required<FirebaseNamespace>;
   var idbKeyval: typeof import('idb-keyval');
-  var strings: LH.Strings;
+  var strings: Record<LH.Locale, LH.LhlMessages>;
 
   interface Window {
     logger: _Logger;

@@ -74,8 +74,6 @@ declare global {
     export type I18NRendererStrings = typeof Util['UIStrings'];
 
     export type LhlMessages = Record<string, {message: string}>;
-
-    export type Strings = Record<LH.Locale, LhlMessages>;
   }
 }
 
