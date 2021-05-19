@@ -1,4 +1,9 @@
 import _TreemapUtil = require('../app/src/util.js');
+import _DragAndDrop = require('../../lighthouse-viewer/app/src/drag-and-drop.js');
+import _FirebaseAuth = require('../../lighthouse-viewer/app/src/firebase-auth.js');
+import _GithubApi = require('../../lighthouse-viewer/app/src/github-api.js');
+import _Logger = require('../../lighthouse-core/report/html/renderer/logger.js');
+import {FirebaseNamespace} from '@firebase/app-types';
 
 export type Strings = Record<LH.Locale, import('../../lighthouse-core/lib/i18n/locales').LhlMessages>;
 
@@ -33,10 +38,21 @@ declare global {
     sort(data: any): void;
   };
   var TreemapUtil: typeof _TreemapUtil;
+  var Logger: typeof _Logger;
+  var DragAndDrop: typeof _DragAndDrop;
+  var GithubApi: typeof _GithubApi;
+  var FirebaseAuth: typeof _FirebaseAuth;
+  var firebase: Required<FirebaseNamespace>;
+  var idbKeyval: typeof import('idb-keyval');
   var strings: Strings;
 
   interface Window {
+    logger: _Logger;
     __treemapOptions?: LH.Treemap.Options;
+  }
+
+  interface AddEventListenerOptions {
+    signal?: AbortSignal;
   }
 }
 

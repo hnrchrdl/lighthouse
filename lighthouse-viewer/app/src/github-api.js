@@ -36,6 +36,7 @@ class GithubApi {
       return Promise.reject(new Error('Save already in progress'));
     }
 
+    // @ts-ignore
     logger.log('Saving report to GitHub...', false);
     this._saving = true;
 
@@ -65,6 +66,7 @@ class GithubApi {
       })
       .then(resp => resp.json())
       .then(json => {
+        // @ts-ignore
         logger.log('Saved!');
         this._saving = false;
         return json.id;
@@ -80,6 +82,7 @@ class GithubApi {
    * @return {Promise<LH.Result>}
    */
   getGistFileContentAsJson(id) {
+    // @ts-ignore
     logger.log('Fetching report from GitHub...', false);
 
     return this._auth.getAccessTokenIfLoggedIn().then(accessToken => {
@@ -101,6 +104,7 @@ class GithubApi {
           const remaining = Number(resp.headers.get('X-RateLimit-Remaining'));
           const limit = Number(resp.headers.get('X-RateLimit-Limit'));
           if (remaining < 10) {
+            // @ts-ignore
             logger.warn('Approaching GitHub\'s rate limit. ' +
                         `${limit - remaining}/${limit} requests used. Consider signing ` +
                         'in to increase this limit.');
@@ -146,6 +150,7 @@ class GithubApi {
       // report. Future requests for the id will either still be invalid or will
       // not return a 304 and so will be overwritten.
       return idbKeyval.set(id, response).then(_ => {
+        // @ts-ignore
         logger.hide();
         // @ts-expect-error - TODO(bckenny): tsc unable to flatten promise chain here
         return response.content;
