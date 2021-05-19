@@ -251,6 +251,7 @@ class LighthouseReportViewer {
       json = JSON.parse(str);
     } catch (e) {
       logger.error('Could not parse JSON file.');
+      return;
     }
 
     try {
