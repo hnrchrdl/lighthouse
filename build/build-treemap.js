@@ -5,6 +5,8 @@
  */
 'use strict';
 
+/** @typedef {import('../lighthouse-core/lib/i18n/locales').LhlMessages} LhlMessages */
+
 const fs = require('fs');
 const GhPagesApp = require('./gh-pages-app.js');
 
@@ -19,7 +21,7 @@ function buildStrings() {
     // Prevent tsc from evaluating util.js
     '' + '../lighthouse-treemap/app/src/util.js'
   ).UIStrings;
-  const strings = /** @type {Record<LH.Locale, LH.LhlMessages>} */ ({});
+  const strings = /** @type {Record<LH.Locale, LhlMessages>} */ ({});
 
   for (const [locale, lhlMessages] of Object.entries(locales)) {
     const localizedStrings = Object.fromEntries(

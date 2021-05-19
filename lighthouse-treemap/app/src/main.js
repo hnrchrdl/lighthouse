@@ -5,6 +5,8 @@
  */
 'use strict';
 
+/** @typedef {import('../../../lighthouse-core/lib/i18n/locales').LhlMessages} LhlMessages */
+
 /* eslint-env browser */
 
 /* globals I18n webtreemap strings TreemapUtil Tabulator Cell Row DragAndDrop Logger GithubApi */
@@ -692,7 +694,7 @@ function injectOptions(options) {
 }
 
 /**
- * @param {LH.LhlMessages} localeMessages
+ * @param {LhlMessages} localeMessages
  */
 function getStrings(localeMessages) {
   const strings = /** @type {TreemapUtil['UIStrings']} */ ({});

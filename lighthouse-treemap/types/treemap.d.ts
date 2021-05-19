@@ -42,7 +42,7 @@ declare global {
   var FirebaseAuth: typeof _FirebaseAuth;
   var firebase: Required<FirebaseNamespace>;
   var idbKeyval: typeof import('idb-keyval');
-  var strings: Record<LH.Locale, LH.LhlMessages>;
+  var strings: Record<LH.Locale, import('../../lighthouse-core/lib/i18n/locales').LhlMessages>;
 
   interface Window {
     logger: _Logger;

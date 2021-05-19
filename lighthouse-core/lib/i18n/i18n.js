@@ -5,6 +5,8 @@
  */
 'use strict';
 
+/** @typedef {import('../../lib/i18n/locales').LhlMessages} LhlMessages */
+
 const path = require('path');
 const MessageFormat = require('intl-messageformat').default;
 const lookupClosestLocale = require('lookup-closest-locale');
@@ -513,7 +515,7 @@ function replaceIcuMessages(inputObject, locale) {
  * Used when the host environment selects the locale and serves lighthouse the intended locale file
  * @see https://docs.google.com/document/d/1jnt3BqKB-4q3AE94UWFA0Gqspx8Sd_jivlB7gQMlmfk/edit
  * @param {LH.Locale} locale
- * @param {LH.LhlMessages} lhlMessages
+ * @param {LhlMessages} lhlMessages
  */
 function registerLocaleData(locale, lhlMessages) {
   LOCALES[locale] = lhlMessages;

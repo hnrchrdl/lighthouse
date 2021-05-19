@@ -72,8 +72,6 @@ declare global {
 
     /** Localized strings for the html report renderer. */
     export type I18NRendererStrings = typeof Util['UIStrings'];
-
-    export type LhlMessages = Record<string, {message: string}>;
   }
 }
 

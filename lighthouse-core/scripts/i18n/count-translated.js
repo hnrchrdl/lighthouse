@@ -5,12 +5,14 @@
  */
 'use strict';
 
+/** @typedef {import('../../lib/i18n/locales').LhlMessages} LhlMessages */
+
 const fs = require('fs');
 const glob = require('glob');
 
 const lhRoot = `${__dirname}/../../../`;
 const enUsLhlFilename = lhRoot + 'lighthouse-core/lib/i18n/locales/en-US.json';
-/** @type {LH.LhlMessages} */
+/** @type {LhlMessages} */
 const enUsLhl = JSON.parse(fs.readFileSync(enUsLhlFilename, 'utf8'));
 
 /**
@@ -37,7 +39,7 @@ function countTranslatedMessages() {
 
   for (const localeFilename of localeFilenames) {
     // Use readFileSync in case other code in this process has altered the require()d form.
-    /** @type {LH.LhlMessages} */
+    /** @type {LhlMessages} */
     const localeLhl = JSON.parse(fs.readFileSync(lhRoot + localeFilename, 'utf-8'));
 
     for (const localeKey of Object.keys(localeLhl)) {
