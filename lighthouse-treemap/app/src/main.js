@@ -784,13 +784,13 @@ class LighthouseTreemap {
   }
 
   /**
-   * @param {unknown} json
+   * @param {any} json
    * @return {LH.Treemap.Options}
    */
   convertToOptions(json) {
-    if (json instanceof Object) {
-      if ('lhr' in json) return json;
-      if ('audits' in json) return {lhr: json};
+    if (json && typeof json === 'object') {
+      if (json.audits) json = {lhr: json};
+      if (json.lhr && json.lhr.audits && typeof json.lhr.audits === 'object') return json;
     }
 
     throw new Error('unknown json');
@@ -828,14 +828,15 @@ class LighthouseTreemap {
    */
   _onFileLoad(str) {
     let json;
+    let options;
     try {
       json = JSON.parse(str);
+      options = this.convertToOptions(json);
     } catch (e) {
-      throw new Error('Could not parse JSON file.');
+      logger.error('Could not parse JSON file.');
     }
 
-    const options = this.convertToOptions(json);
-    this.init(options);
+    if (options) this.init(options);
   }
 
   /**
@@ -872,6 +873,7 @@ class LighthouseTreemap {
 
       return;
     } catch (err) {
+      // noop
     }
 
     logger.error('Pasted content did not have JSON or gist URL');
@@ -889,9 +891,15 @@ async function main() {
     const response = await fetch('debug.json');
     app.init(await response.json());
   } else if (params.has('gist')) {
-    const json = await app._github.getGistFileContentAsJson(params.get('gist') || '');
-    const options = app.convertToOptions(json);
-    app.init(options);
+    let json;
+    let options;
+    try {
+      json = await app._github.getGistFileContentAsJson(params.get('gist') || '');
+      options = app.convertToOptions(json);
+    } catch (err) {
+      logger.log(err);
+    }
+    if (options) app.init(options);
   } else {
     window.addEventListener('message', e => {
       if (e.source !== self.opener) return;

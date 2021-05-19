@@ -76,7 +76,7 @@ class LighthouseReportViewer {
       if (inputTarget.files) {
         this._dragAndDropper.readFile(inputTarget.files[0]).then(str => {
           this._onFileLoad(str);
-        });
+        }).catch(e => logger.error(e));
       }
       inputTarget.value = '';
     });

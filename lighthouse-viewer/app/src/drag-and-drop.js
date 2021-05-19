@@ -5,6 +5,8 @@
  */
 'use strict';
 
+/* global logger */
+
 /**
  * Manages drag and drop file input for the page.
  */
@@ -79,7 +81,8 @@ class DragAndDrop {
       if (e.dataTransfer) {
         this.readFile(e.dataTransfer.files[0]).then((str) => {
           this._fileHandlerCallback(str);
-        });
+          // @ts-ignore
+        }).catch(e => logger.error(e));
       }
     });
   }
