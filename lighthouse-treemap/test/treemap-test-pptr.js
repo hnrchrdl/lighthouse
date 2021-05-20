@@ -77,7 +77,6 @@ describe('Lighthouse Treemap', () => {
       await new Promise(resolve => browser.on('targetcreated', resolve));
       const target = (await browser.targets()).find(target => target.url() === treemapUrl);
       page = await target.page();
-      await openerPage.close();
       await page.waitForFunction(() => {
         if (window.__treemapOptions) return true;
 

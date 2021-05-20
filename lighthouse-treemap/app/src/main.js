@@ -684,13 +684,15 @@ function applyActiveClass(currentViewModeId, el) {
  * @param {LH.Treemap.Options} options
  */
 function injectOptions(options) {
-  if (window.__treemapOptions) return;
+  let scriptEl = document.querySelector('.lh-injectedoptions');
+  if (scriptEl) {
+    scriptEl.remove();
+  }
 
-  const scriptEl = document.createElement('script');
+  scriptEl = TreemapUtil.createChildOf(document.head, 'script', 'lh-injectedoptions');
   scriptEl.textContent = `
     window.__treemapOptions = ${JSON.stringify(options)};
   `;
-  document.head.append(scriptEl);
 }
 
 /**
