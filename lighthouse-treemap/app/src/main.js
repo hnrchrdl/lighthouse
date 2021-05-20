@@ -882,17 +882,35 @@ class LighthouseTreemap {
   }
 }
 
+/**
+ * @param {string} encoded
+ */
+function fromBinary(encoded) {
+  const binary = atob(encoded);
+  const bytes = new Uint8Array(binary.length);
+  for (let i = 0; i < bytes.length; i++) {
+    bytes[i] = binary.charCodeAt(i);
+  }
+  return String.fromCharCode(...new Uint16Array(bytes.buffer));
+}
+
 async function main() {
   const app = new LighthouseTreemap();
-  const params = new URLSearchParams(window.location.search);
+  const queryParams = new URLSearchParams(window.location.search);
+  const hashParams = location.hash ? JSON.parse(fromBinary(location.hash.substr(1))) : {};
+  /** @type {Record<string, any>} */
+  const params = {
+    ...Object.fromEntries(queryParams.entries()),
+    ...hashParams,
+  };
 
   if (window.__treemapOptions) {
     // Prefer the hardcoded options from a saved HTML file above all.
     app.init(window.__treemapOptions);
-  } else if (params.has('debug')) {
+  } else if ('debug' in params) {
     const response = await fetch('debug.json');
     app.init(await response.json());
-  } else if (params.has('gist')) {
+  } else if (params.gist) {
     let json;
     let options;
     try {
