@@ -914,7 +914,7 @@ async function main() {
     let json;
     let options;
     try {
-      json = await app._github.getGistFileContentAsJson(params.get('gist') || '');
+      json = await app._github.getGistFileContentAsJson(params.gist || '');
       options = app.convertToOptions(json);
     } catch (err) {
       logger.log(err);
