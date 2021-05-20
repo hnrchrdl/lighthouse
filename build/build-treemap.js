@@ -18,7 +18,7 @@ const GhPagesApp = require('./gh-pages-app.js');
 function buildStrings() {
   const locales = require('../lighthouse-core/lib/i18n/locales.js');
   const UIStrings = require(
-    // Prevent tsc from evaluating util.js
+    // Prevent `tsc -p .` from evaluating util.js using core types, it is already typchecked by `tsc -p lighthouse-treemap`.
     '' + '../lighthouse-treemap/app/src/util.js'
   ).UIStrings;
   const strings = /** @type {Record<LH.Locale, LhlMessages>} */ ({});
